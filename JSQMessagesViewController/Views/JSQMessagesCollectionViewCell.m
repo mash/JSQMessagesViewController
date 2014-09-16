@@ -87,6 +87,15 @@
     [super awakeFromNib];
     
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self.contentView setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[contentView]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:@{@"contentView":self.contentView}]];
+    [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[contentView]|"
+                                                                 options:NSLayoutFormatDirectionLeadingToTrailing
+                                                                 metrics:nil
+                                                                   views:@{@"contentView":self.contentView}]];
     self.backgroundColor = [UIColor whiteColor];
     
     self.cellTopLabelHeightConstraint.constant = 0.0f;
