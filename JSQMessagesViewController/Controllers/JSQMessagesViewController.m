@@ -124,7 +124,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     self.inputToolbar.contentView.textView.delegate = self;
     
     self.sender = @"JSQDefaultSender";
-    
+
     self.automaticallyScrollsToMostRecentMessage = YES;
     
     self.outgoingCellIdentifier = [JSQMessagesCollectionViewCellOutgoing cellReuseIdentifier];
