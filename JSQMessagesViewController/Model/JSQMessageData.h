@@ -50,6 +50,11 @@
  */
 - (NSDate *)date;
 
+@optional
+
+- (BOOL)hasCustomSize;
+- (CGSize)customSize;
+
 @end
 
 #endif

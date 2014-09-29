@@ -370,6 +370,11 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
     }
     
     id<JSQMessageData> messageData = [self.collectionView.dataSource collectionView:self.collectionView messageDataForItemAtIndexPath:indexPath];
+    if ([messageData respondsToSelector:@selector(hasCustomSize)] && [messageData hasCustomSize]) {
+        CGSize size = [messageData customSize];
+        [self.messageBubbleSizes setObject:[NSValue valueWithCGSize:size] forKey:indexPath];
+        return size;
+    }
     
     CGSize avatarSize = [self jsq_avatarSizeForIndexPath:indexPath];
     

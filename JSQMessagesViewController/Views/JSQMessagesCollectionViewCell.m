@@ -113,21 +113,23 @@
     
     self.cellBottomLabel.font = [UIFont systemFontOfSize:11.0f];
     self.cellBottomLabel.textColor = [UIColor lightGrayColor];
-    
-    self.textView.textColor = [UIColor whiteColor];
-    self.textView.editable = NO;
-    self.textView.selectable = YES;
-    self.textView.userInteractionEnabled = YES;
-    self.textView.dataDetectorTypes = UIDataDetectorTypeNone;
-    self.textView.showsHorizontalScrollIndicator = NO;
-    self.textView.showsVerticalScrollIndicator = NO;
-    self.textView.scrollEnabled = NO;
-    self.textView.backgroundColor = [UIColor clearColor];
-    self.textView.contentInset = UIEdgeInsetsZero;
-    self.textView.scrollIndicatorInsets = UIEdgeInsetsZero;
-    self.textView.contentOffset = CGPointZero;
-    self.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : [UIColor whiteColor],
-                                          NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
+
+    if (self.textView) {
+        self.textView.textColor = [UIColor whiteColor];
+        self.textView.editable = NO;
+        self.textView.selectable = YES;
+        self.textView.userInteractionEnabled = YES;
+        self.textView.dataDetectorTypes = UIDataDetectorTypeNone;
+        self.textView.showsHorizontalScrollIndicator = NO;
+        self.textView.showsVerticalScrollIndicator = NO;
+        self.textView.scrollEnabled = NO;
+        self.textView.backgroundColor = [UIColor clearColor];
+        self.textView.contentInset = UIEdgeInsetsZero;
+        self.textView.scrollIndicatorInsets = UIEdgeInsetsZero;
+        self.textView.contentOffset = CGPointZero;
+        self.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : [UIColor whiteColor],
+                                              NSUnderlineStyleAttributeName : @(NSUnderlineStyleSingle | NSUnderlinePatternSolid) };
+    }
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(jsq_handleTapGesture:)];
     [self addGestureRecognizer:tap];
@@ -158,9 +160,11 @@
     self.cellTopLabel.text = nil;
     self.messageBubbleTopLabel.text = nil;
     self.cellBottomLabel.text = nil;
-    self.textView.dataDetectorTypes = UIDataDetectorTypeNone;
-    self.textView.text = nil;
-    self.textView.attributedText = nil;
+    if (self.textView) {
+        self.textView.dataDetectorTypes = UIDataDetectorTypeNone;
+        self.textView.text = nil;
+        self.textView.attributedText = nil;
+    }
 }
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes
@@ -168,16 +172,18 @@
     [super applyLayoutAttributes:layoutAttributes];
     
     JSQMessagesCollectionViewLayoutAttributes *customAttributes = (JSQMessagesCollectionViewLayoutAttributes *)layoutAttributes;
-    
-    if (self.textView.font != customAttributes.messageBubbleFont) {
-        self.textView.font = customAttributes.messageBubbleFont;
+
+    if (self.textView) {
+        if (self.textView.font != customAttributes.messageBubbleFont) {
+            self.textView.font = customAttributes.messageBubbleFont;
+        }
+
+        if (!UIEdgeInsetsEqualToEdgeInsets(self.textView.textContainerInset, customAttributes.textViewTextContainerInsets)) {
+            self.textView.textContainerInset = customAttributes.textViewTextContainerInsets;
+        }
+
+        self.textViewFrameInsets = customAttributes.textViewFrameInsets;
     }
-    
-    if (!UIEdgeInsetsEqualToEdgeInsets(self.textView.textContainerInset, customAttributes.textViewTextContainerInsets)) {
-        self.textView.textContainerInset = customAttributes.textViewTextContainerInsets;
-    }
-    
-    self.textViewFrameInsets = customAttributes.textViewFrameInsets;
 
     [self jsq_updateConstraint:self.messageBubbleLeftRightMarginConstraint
                   withConstant:customAttributes.messageBubbleLeftRightMargin];
@@ -245,8 +251,14 @@
                                               CGRectGetHeight(self.messageBubbleContainerView.bounds));
     
     [messageBubbleImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.messageBubbleContainerView insertSubview:messageBubbleImageView belowSubview:self.textView];
-    [self.messageBubbleContainerView jsq_pinAllEdgesOfSubview:messageBubbleImageView];
+    if (self.textView) {
+        [self.messageBubbleContainerView insertSubview:messageBubbleImageView belowSubview:self.textView];
+        [self.messageBubbleContainerView jsq_pinAllEdgesOfSubview:messageBubbleImageView];
+    }
+    else {
+        [self.messageBubbleContainerView insertSubview:messageBubbleImageView atIndex:self.subviews.count-1];
+        [self.messageBubbleContainerView jsq_pinAllEdgesOfSubview:messageBubbleImageView];
+    }
     [self setNeedsUpdateConstraints];
     
     _messageBubbleImageView = messageBubbleImageView;
