@@ -160,4 +160,9 @@
  */
 + (NSString *)cellReuseIdentifier;
 
+#pragma mark - Instance methods
+
+- (void)setHighlighted:(BOOL)highlighted;
+- (void)setSelected:(BOOL)selected;
+
 @end

@@ -94,7 +94,7 @@
  *  @param collectionView The collection view object that is notifying the delegate of the tap event.
  *  @param indexPath      The index path of the item for which the message bubble was tapped.
  */
-- (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath;
+- (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapMessageBubbleAtIndexPath:(NSIndexPath *)indexPath cell:(UICollectionViewCell*)cell;
 
 /**
  *  Notifies the delegate that the cell at the specified indexPath did receive a tap event at the specified touchLocation.
@@ -108,7 +108,7 @@
  *  avatar or message bubble are tapped. There are separate delegate methods for these two cases.
  *
  *  @see `collectionView:didTapAvatarImageView:atIndexPath:`
- *  @see `collectionView:didTapMessageBubbleAtIndexPath:atIndexPath:`
+ *  @see `collectionView:didTapMessageBubbleAtIndexPath:atIndexPath:cell:`
  */
 - (void)collectionView:(JSQMessagesCollectionView *)collectionView didTapCellAtIndexPath:(NSIndexPath *)indexPath touchLocation:(CGPoint)touchLocation;
 
