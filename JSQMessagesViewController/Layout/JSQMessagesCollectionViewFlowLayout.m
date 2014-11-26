@@ -423,10 +423,6 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
                                                                                 layout:self
                                                       heightForCellTopLabelAtIndexPath:indexPath];
     
-    layoutAttributes.messageBubbleTopLabelHeight = [self.collectionView.delegate collectionView:self.collectionView
-                                                                                         layout:self
-                                                      heightForMessageBubbleTopLabelAtIndexPath:indexPath];
-    
     layoutAttributes.cellBottomLabelHeight = [self.collectionView.delegate collectionView:self.collectionView
                                                                                    layout:self
                                                       heightForCellBottomLabelAtIndexPath:indexPath];

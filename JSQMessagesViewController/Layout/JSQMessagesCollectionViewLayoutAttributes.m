@@ -60,12 +60,6 @@
     _cellTopLabelHeight = floorf(cellTopLabelHeight);
 }
 
-- (void)setMessageBubbleTopLabelHeight:(CGFloat)messageBubbleTopLabelHeight
-{
-    NSParameterAssert(messageBubbleTopLabelHeight >= 0.0f);
-    _messageBubbleTopLabelHeight = floorf(messageBubbleTopLabelHeight);
-}
-
 - (void)setCellBottomLabelHeight:(CGFloat)cellBottomLabelHeight
 {
     NSParameterAssert(cellBottomLabelHeight >= 0.0f);
@@ -94,7 +88,6 @@
             || !CGSizeEqualToSize(layoutAttributes.outgoingAvatarViewSize, self.outgoingAvatarViewSize)
             || (int)layoutAttributes.messageBubbleLeftRightMargin != (int)self.messageBubbleLeftRightMargin
             || (int)layoutAttributes.cellTopLabelHeight != (int)self.cellTopLabelHeight
-            || (int)layoutAttributes.messageBubbleTopLabelHeight != (int)self.messageBubbleTopLabelHeight
             || (int)layoutAttributes.cellBottomLabelHeight != (int)self.cellBottomLabelHeight) {
             return NO;
         }
@@ -125,7 +118,6 @@
     copy.incomingAvatarViewSize = self.incomingAvatarViewSize;
     copy.outgoingAvatarViewSize = self.outgoingAvatarViewSize;
     copy.cellTopLabelHeight = self.cellTopLabelHeight;
-    copy.messageBubbleTopLabelHeight = self.messageBubbleTopLabelHeight;
     copy.cellBottomLabelHeight = self.cellBottomLabelHeight;
     return copy;
 }

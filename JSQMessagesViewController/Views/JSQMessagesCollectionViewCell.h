@@ -64,7 +64,7 @@
 
 /**
  *  The `JSQMessagesCollectionViewCell` is an abstract class that presents the content for a single message data item
- *  when that item is within the collection view’s visible bounds. The layout and presentation 
+ *  when that item is within the collection view’s visible bounds. The layout and presentation
  *  of cells is managed by the collection view and its corresponding layout object.
  *
  *  @warning This class is intended to be subclassed. You should not use it directly.
@@ -81,12 +81,6 @@
  *  This label is most commonly used to display message timestamps.
  */
 @property (weak, nonatomic, readonly) JSQMessagesLabel *cellTopLabel;
-
-/**
- *  Returns the label that is pinned just above the messageBubbleImageView, and below the cellTopLabel.
- *  This label is most commonly used to display the message sender.
- */
-@property (weak, nonatomic, readonly) JSQMessagesLabel *messageBubbleTopLabel;
 
 /**
  *  Returns the label that is pinned to the bottom of the cell.
@@ -107,13 +101,13 @@
  *  To do so, override `collectionView:cellForItemAtIndexPath:`
  *
  *  @warning You should not try to manipulate any properties of this view, for example adjusting
- *  its frame, nor should you remove this view from the cell or remove any of its subviews. 
+ *  its frame, nor should you remove this view from the cell or remove any of its subviews.
  *  Doing so could result in unexpected behavior.
  */
 @property (weak, nonatomic, readonly) UIView *messageBubbleContainerView;
 
 /**
- *  Returns the avatar container view of the cell. This view is the superview of 
+ *  Returns the avatar container view of the cell. This view is the superview of
  *  the cell's avatarImageView.
  *
  *  @discussion You may customize the cell by adding custom views to this container view.
@@ -148,7 +142,7 @@
 /**
  *  Returns the `UINib` object initialized for the cell.
  *
- *  @return The initialized `UINib` object or `nil` if there were errors during 
+ *  @return The initialized `UINib` object or `nil` if there were errors during
  *  initialization or the nib file could not be located.
  */
 + (UINib *)nib;
