@@ -419,10 +419,6 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
     
     layoutAttributes.outgoingAvatarViewSize = self.outgoingAvatarViewSize;
     
-    layoutAttributes.cellTopLabelHeight = [self.collectionView.delegate collectionView:self.collectionView
-                                                                                layout:self
-                                                      heightForCellTopLabelAtIndexPath:indexPath];
-    
     layoutAttributes.cellBottomLabelHeight = [self.collectionView.delegate collectionView:self.collectionView
                                                                                    layout:self
                                                       heightForCellBottomLabelAtIndexPath:indexPath];

@@ -27,7 +27,6 @@
 
 @interface JSQMessagesCollectionViewCell ()
 
-@property (weak, nonatomic) IBOutlet JSQMessagesLabel *cellTopLabel;
 @property (weak, nonatomic) IBOutlet JSQMessagesLabel *cellBottomLabel;
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
@@ -40,7 +39,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewAvatarHorizontalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewMarginHorizontalSpaceConstraint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellTopLabelHeightConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellBottomLabelHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarContainerViewWidthConstraint;
@@ -96,14 +94,9 @@
                                                                    views:@{@"contentView":self.contentView}]];
     self.backgroundColor = [UIColor whiteColor];
     
-    self.cellTopLabelHeightConstraint.constant = 0.0f;
     self.cellBottomLabelHeightConstraint.constant = 0.0f;
     
     self.avatarViewSize = CGSizeZero;
-    
-    self.cellTopLabel.textAlignment = NSTextAlignmentCenter;
-    self.cellTopLabel.font = [UIFont boldSystemFontOfSize:12.0f];
-    self.cellTopLabel.textColor = [UIColor lightGrayColor];
     
     self.cellBottomLabel.font = [UIFont systemFontOfSize:11.0f];
     self.cellBottomLabel.textColor = [UIColor lightGrayColor];
@@ -134,7 +127,6 @@
 {
     _delegate = nil;
     
-    _cellTopLabel = nil;
     _cellBottomLabel = nil;
     _textView = nil;
     _messageBubbleImageView = nil;
@@ -150,7 +142,6 @@
 {
     [super prepareForReuse];
     
-    self.cellTopLabel.text = nil;
     self.cellBottomLabel.text = nil;
     if (self.textView) {
         self.textView.dataDetectorTypes = UIDataDetectorTypeNone;
@@ -179,9 +170,6 @@
 
     [self jsq_updateConstraint:self.messageBubbleLeftRightMarginConstraint
                   withConstant:customAttributes.messageBubbleLeftRightMargin];
-    
-    [self jsq_updateConstraint:self.cellTopLabelHeightConstraint
-                  withConstant:customAttributes.cellTopLabelHeight];
     
     [self jsq_updateConstraint:self.cellBottomLabelHeightConstraint
                   withConstant:customAttributes.cellBottomLabelHeight];
@@ -212,7 +200,6 @@
 {
     [super setBackgroundColor:backgroundColor];
     
-    self.cellTopLabel.backgroundColor = backgroundColor;
     self.cellBottomLabel.backgroundColor = backgroundColor;
     
     self.messageBubbleImageView.backgroundColor = backgroundColor;

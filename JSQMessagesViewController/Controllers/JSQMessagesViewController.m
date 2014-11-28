@@ -332,10 +332,6 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     return nil;
 }
 
-- (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath {
-    return nil;
-}
-
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath {
     return nil;
 }
@@ -369,7 +365,6 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     cell.textView.text                  = messageText;
     cell.messageBubbleImageView         = [collectionView.dataSource collectionView: collectionView bubbleImageViewForItemAtIndexPath: indexPath];
     cell.avatarImageView                = [collectionView.dataSource collectionView: collectionView avatarImageViewForItemAtIndexPath: indexPath];
-    cell.cellTopLabel.attributedText    = [collectionView.dataSource collectionView: collectionView attributedTextForCellTopLabelAtIndexPath: indexPath];
     cell.cellBottomLabel.attributedText = [collectionView.dataSource collectionView: collectionView attributedTextForCellBottomLabelAtIndexPath: indexPath];
 
     if (isOutgoingMessage) {
@@ -466,15 +461,9 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     CGSize bubbleSize = [collectionViewLayout messageBubbleSizeForItemAtIndexPath: indexPath];
 
     CGFloat cellHeight = bubbleSize.height;
-    cellHeight += [self collectionView: collectionView layout: collectionViewLayout heightForCellTopLabelAtIndexPath: indexPath];
     cellHeight += [self collectionView: collectionView layout: collectionViewLayout heightForCellBottomLabelAtIndexPath: indexPath];
 
     return CGSizeMake(collectionViewLayout.itemWidth, cellHeight);
-}
-
-- (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
-                   layout:(JSQMessagesCollectionViewFlowLayout *)collectionViewLayout heightForCellTopLabelAtIndexPath:(NSIndexPath *)indexPath {
-    return 0.0f;
 }
 
 - (CGFloat)collectionView:(JSQMessagesCollectionView *)collectionView
