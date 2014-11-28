@@ -39,8 +39,6 @@
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewAvatarHorizontalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewMarginHorizontalSpaceConstraint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *cellBottomLabelHeightConstraint;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarContainerViewWidthConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarContainerViewHeightConstraint;
 
@@ -93,13 +91,8 @@
                                                                  metrics:nil
                                                                    views:@{@"contentView":self.contentView}]];
     self.backgroundColor = [UIColor whiteColor];
-    
-    self.cellBottomLabelHeightConstraint.constant = 0.0f;
-    
+
     self.avatarViewSize = CGSizeZero;
-    
-    self.cellBottomLabel.font = [UIFont systemFontOfSize:11.0f];
-    self.cellBottomLabel.textColor = [UIColor lightGrayColor];
 
     if (self.textView) {
         self.textView.textColor = [UIColor whiteColor];
@@ -170,9 +163,6 @@
 
     [self jsq_updateConstraint:self.messageBubbleLeftRightMarginConstraint
                   withConstant:customAttributes.messageBubbleLeftRightMargin];
-    
-    [self jsq_updateConstraint:self.cellBottomLabelHeightConstraint
-                  withConstant:customAttributes.cellBottomLabelHeight];
     
     if ([self isKindOfClass:[JSQMessagesCollectionViewCellIncoming class]]) {
         self.avatarViewSize = customAttributes.incomingAvatarViewSize;

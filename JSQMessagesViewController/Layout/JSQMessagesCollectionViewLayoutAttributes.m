@@ -54,11 +54,6 @@
     _outgoingAvatarViewSize = CGSizeMake(ceil(outgoingAvatarViewSize.width), ceilf(outgoingAvatarViewSize.height));
 }
 
-- (void)setCellBottomLabelHeight:(CGFloat)cellBottomLabelHeight
-{
-    NSParameterAssert(cellBottomLabelHeight >= 0.0f);
-    _cellBottomLabelHeight = floorf(cellBottomLabelHeight);
-}
 
 #pragma mark - NSObject
 
@@ -81,7 +76,7 @@
             || !CGSizeEqualToSize(layoutAttributes.incomingAvatarViewSize, self.incomingAvatarViewSize)
             || !CGSizeEqualToSize(layoutAttributes.outgoingAvatarViewSize, self.outgoingAvatarViewSize)
             || (int)layoutAttributes.messageBubbleLeftRightMargin != (int)self.messageBubbleLeftRightMargin
-            || (int)layoutAttributes.cellBottomLabelHeight != (int)self.cellBottomLabelHeight) {
+        ) {
             return NO;
         }
     }
@@ -110,7 +105,6 @@
     copy.textViewTextContainerInsets = self.textViewTextContainerInsets;
     copy.incomingAvatarViewSize = self.incomingAvatarViewSize;
     copy.outgoingAvatarViewSize = self.outgoingAvatarViewSize;
-    copy.cellBottomLabelHeight = self.cellBottomLabelHeight;
     return copy;
 }
 

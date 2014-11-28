@@ -418,10 +418,6 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
     layoutAttributes.incomingAvatarViewSize = self.incomingAvatarViewSize;
     
     layoutAttributes.outgoingAvatarViewSize = self.outgoingAvatarViewSize;
-    
-    layoutAttributes.cellBottomLabelHeight = [self.collectionView.delegate collectionView:self.collectionView
-                                                                                   layout:self
-                                                      heightForCellBottomLabelAtIndexPath:indexPath];
 }
 
 - (CGFloat)jsq_messageBubbleTextContainerInsetsTotal

@@ -38,7 +38,6 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
-    self.cellBottomLabel.textAlignment = NSTextAlignmentLeft;
 }
 
 @end
