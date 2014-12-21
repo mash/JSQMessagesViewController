@@ -42,7 +42,7 @@
  *  @return The name of the user who sent the message.
  *  @warning You must not return `nil` from this method.
  */
-- (NSString *)sender;
+// - (NSString *)sender;
 
 /**
  *  @return The date that the message was sent.

@@ -347,43 +347,8 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 }
 
 - (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    id<JSQMessageData> messageData = [collectionView.dataSource collectionView: collectionView messageDataForItemAtIndexPath: indexPath];
-    NSParameterAssert(messageData != nil);
-
-    NSString *messageSender = [messageData sender];
-    NSParameterAssert(messageSender != nil);
-
-    BOOL isOutgoingMessage = [messageSender isEqualToString: self.sender];
-
-    NSString *cellIdentifier            = isOutgoingMessage ? self.outgoingCellIdentifier : self.incomingCellIdentifier;
-    JSQMessagesCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier: cellIdentifier forIndexPath: indexPath];
-    cell.delegate = collectionView;
-
-    NSString *messageText = [messageData text];
-    NSParameterAssert(messageText != nil);
-
-    cell.textView.text                  = messageText;
-    cell.messageBubbleImageView         = [collectionView.dataSource collectionView: collectionView bubbleImageViewForItemAtIndexPath: indexPath];
-    cell.avatarImageView                = [collectionView.dataSource collectionView: collectionView avatarImageViewForItemAtIndexPath: indexPath];
-    cell.cellBottomLabel.attributedText = [collectionView.dataSource collectionView: collectionView attributedTextForCellBottomLabelAtIndexPath: indexPath];
-
-    if (isOutgoingMessage) {
-        cell.avatarImageView.bounds = CGRectMake(CGRectGetMinX(cell.avatarImageView.bounds),
-                                                 CGRectGetMinY(cell.avatarImageView.bounds),
-                                                 collectionView.collectionViewLayout.outgoingAvatarViewSize.width,
-                                                 collectionView.collectionViewLayout.outgoingAvatarViewSize.height);
-    }
-    else {
-        cell.avatarImageView.bounds = CGRectMake(CGRectGetMinX(cell.avatarImageView.bounds),
-                                                 CGRectGetMinY(cell.avatarImageView.bounds),
-                                                 collectionView.collectionViewLayout.incomingAvatarViewSize.width,
-                                                 collectionView.collectionViewLayout.incomingAvatarViewSize.height);
-    }
-
-    cell.backgroundColor            = [UIColor clearColor];
-    cell.textView.dataDetectorTypes = UIDataDetectorTypeAll;
-
-    return cell;
+    // override this
+    return nil;
 }
 
 - (UICollectionReusableView *)collectionView:(JSQMessagesCollectionView *)collectionView
