@@ -205,6 +205,7 @@
  */
 - (void)scrollToBottomAnimated:(BOOL)animated;
 
+- (void)updateCollectionViewInsets;
 - (void)setCollectionViewInsetsTopValue:(CGFloat)top bottomValue:(CGFloat)bottom;
 
 @end

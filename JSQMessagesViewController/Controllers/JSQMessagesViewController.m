@@ -77,7 +77,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 - (void)jsq_adjustInputToolbarHeightConstraintByDelta:(CGFloat)dy;
 - (void)jsq_scrollComposerTextViewToBottomAnimated:(BOOL)animated;
 
-- (void)jsq_updateCollectionViewInsets;
+- (void)updateCollectionViewInsets;
 
 - (void)jsq_addObservers;
 - (void)jsq_removeObservers;
@@ -134,7 +134,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     self.topContentAdditionalInset = 0.0f;
 
-    [self jsq_updateCollectionViewInsets];
+    [self updateCollectionViewInsets];
 
     self.keyboardController = [[JSQMessagesKeyboardController alloc] initWithTextView: self.inputToolbar.contentView.textView
                                                                           contextView: self.view
@@ -564,7 +564,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
             CGFloat dy = newContentSize.height - oldContentSize.height;
 
             [self jsq_adjustInputToolbarForComposerTextViewContentSizeChange: dy];
-            [self jsq_updateCollectionViewInsets];
+            [self updateCollectionViewInsets];
             if (self.automaticallyScrollsToMostRecentMessage) {
                 [self scrollToBottomAnimated: NO];
             }
@@ -587,7 +587,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
     [self.view setNeedsUpdateConstraints];
     [self.view layoutIfNeeded];
 
-    [self jsq_updateCollectionViewInsets];
+    [self updateCollectionViewInsets];
 }
 
 - (void)jsq_updateKeyboardTriggerPoint {
@@ -696,7 +696,7 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
 #pragma mark - Collection view utilities
 
-- (void)jsq_updateCollectionViewInsets {
+- (void)updateCollectionViewInsets {
     [self setCollectionViewInsetsTopValue: self.topLayoutGuide.length + self.topContentAdditionalInset
                               bottomValue: CGRectGetHeight(self.collectionView.frame) - CGRectGetMinY(self.inputToolbar.frame)];
 }
