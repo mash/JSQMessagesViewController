@@ -136,10 +136,10 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 
     [self updateCollectionViewInsets];
 
-    self.keyboardController = [[JSQMessagesKeyboardController alloc] initWithTextView: self.inputToolbar.contentView.textView
-                                                                          contextView: self.view
-                                                                 panGestureRecognizer: self.collectionView.panGestureRecognizer
-                                                                             delegate: self];
+//    self.keyboardController = [[JSQMessagesKeyboardController alloc] initWithTextView: self.inputToolbar.contentView.textView
+//                                                                          contextView: self.view
+//                                                                 panGestureRecognizer: self.collectionView.panGestureRecognizer
+//                                                                             delegate: self];
 }
 
 - (void)dealloc {
