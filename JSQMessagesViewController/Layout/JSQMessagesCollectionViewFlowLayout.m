@@ -391,7 +391,7 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
     
     CGFloat verticalInsets = self.messageBubbleTextViewTextContainerInsets.top + self.messageBubbleTextViewTextContainerInsets.bottom;
     
-    CGSize finalSize = CGSizeMake(stringSize.width, stringSize.height + verticalInsets);
+    CGSize finalSize = CGSizeMake(stringSize.width, fmax(stringSize.height + verticalInsets, avatarSize.height));
     
     [self.messageBubbleSizes setObject:[NSValue valueWithCGSize:finalSize] forKey:indexPath];
     
