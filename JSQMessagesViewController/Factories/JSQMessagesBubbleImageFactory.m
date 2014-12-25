@@ -72,7 +72,7 @@
     highlightedBubble = [JSQMessagesBubbleImageFactory jsq_stretchableImageFromImage:highlightedBubble withCapInsets:capInsets];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:normalBubble highlightedImage:highlightedBubble];
-    imageView.backgroundColor = [UIColor whiteColor];
+    // imageView.backgroundColor = [UIColor whiteColor];
     return imageView;
 }
 

@@ -107,8 +107,6 @@ static void * kJSQMessagesKeyValueObservingContext = &kJSQMessagesKeyValueObserv
 #pragma mark - Initialization
 
 - (void)jsq_configureMessagesViewController {
-    self.view.backgroundColor = [UIColor whiteColor];
-
     self.jsq_isObserving = NO;
 
     self.toolbarHeightConstraint.constant = kJSQMessagesInputToolbarHeightDefault;

@@ -90,12 +90,10 @@
                                                                  options:NSLayoutFormatDirectionLeadingToTrailing
                                                                  metrics:nil
                                                                    views:@{@"contentView":self.contentView}]];
-    self.backgroundColor = [UIColor whiteColor];
 
     self.avatarViewSize = CGSizeZero;
 
     if (self.textView) {
-        self.textView.textColor = [UIColor whiteColor];
         self.textView.editable = NO;
         self.textView.selectable = YES;
         self.textView.userInteractionEnabled = YES;
@@ -103,7 +101,6 @@
         self.textView.showsHorizontalScrollIndicator = NO;
         self.textView.showsVerticalScrollIndicator = NO;
         self.textView.scrollEnabled = NO;
-        self.textView.backgroundColor = [UIColor clearColor];
         self.textView.contentInset = UIEdgeInsetsZero;
         self.textView.scrollIndicatorInsets = UIEdgeInsetsZero;
         self.textView.contentOffset = CGPointZero;
@@ -185,19 +182,6 @@
 }
 
 #pragma mark - Setters
-
-- (void)setBackgroundColor:(UIColor *)backgroundColor
-{
-    [super setBackgroundColor:backgroundColor];
-    
-    self.cellBottomLabel.backgroundColor = backgroundColor;
-    
-    self.messageBubbleImageView.backgroundColor = backgroundColor;
-    self.avatarImageView.backgroundColor = backgroundColor;
-    
-    self.messageBubbleContainerView.backgroundColor = backgroundColor;
-    self.avatarContainerView.backgroundColor = backgroundColor;
-}
 
 - (void)setMessageBubbleImageView:(UIImageView *)messageBubbleImageView
 {
