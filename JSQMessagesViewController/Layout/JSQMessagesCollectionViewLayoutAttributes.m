@@ -39,7 +39,7 @@
 - (void)setMessageBubbleLeftRightMargin:(CGFloat)messageBubbleLeftRightMargin
 {
     NSParameterAssert(messageBubbleLeftRightMargin >= 0.0f);
-    _messageBubbleLeftRightMargin = ceilf(messageBubbleLeftRightMargin);
+    _messageBubbleToNonAvatarEdge = ceilf(messageBubbleLeftRightMargin);
 }
 
 - (void)setIncomingAvatarViewSize:(CGSize)incomingAvatarViewSize
@@ -71,11 +71,10 @@
         JSQMessagesCollectionViewLayoutAttributes *layoutAttributes = (JSQMessagesCollectionViewLayoutAttributes *)object;
         
         if (![layoutAttributes.messageBubbleFont isEqual:self.messageBubbleFont]
-            || !UIEdgeInsetsEqualToEdgeInsets(layoutAttributes.textViewFrameInsets, self.textViewFrameInsets)
             || !UIEdgeInsetsEqualToEdgeInsets(layoutAttributes.textViewTextContainerInsets, self.textViewTextContainerInsets)
             || !CGSizeEqualToSize(layoutAttributes.incomingAvatarViewSize, self.incomingAvatarViewSize)
             || !CGSizeEqualToSize(layoutAttributes.outgoingAvatarViewSize, self.outgoingAvatarViewSize)
-            || (int)layoutAttributes.messageBubbleLeftRightMargin != (int)self.messageBubbleLeftRightMargin
+            || (int)layoutAttributes.messageBubbleToNonAvatarEdge != (int)self.messageBubbleToNonAvatarEdge
         ) {
             return NO;
         }
@@ -100,8 +99,7 @@
     }
     
     copy.messageBubbleFont = self.messageBubbleFont;
-    copy.messageBubbleLeftRightMargin = self.messageBubbleLeftRightMargin;
-    copy.textViewFrameInsets = self.textViewFrameInsets;
+    copy.messageBubbleToNonAvatarEdge = self.messageBubbleToNonAvatarEdge;
     copy.textViewTextContainerInsets = self.textViewTextContainerInsets;
     copy.incomingAvatarViewSize = self.incomingAvatarViewSize;
     copy.outgoingAvatarViewSize = self.outgoingAvatarViewSize;

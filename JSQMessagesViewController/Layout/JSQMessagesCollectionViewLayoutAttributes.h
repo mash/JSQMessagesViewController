@@ -40,32 +40,13 @@
  *  For *incoming* messages, this value specifies the amount of spacing from the right most edge 
  *  of the collection view cell to the right most edge of a message bubble with in the cell.
  */
-@property (assign, nonatomic) CGFloat messageBubbleLeftRightMargin;
+@property (assign, nonatomic) CGFloat messageBubbleToNonAvatarEdge;
 
 /**
  *  The inset of the text container's layout area within the text view's content area in a `JSQMessagesCollectionViewCell`. 
  *  The specified inset values should be greater than or equal to `0.0`.
  */
 @property (assign, nonatomic) UIEdgeInsets textViewTextContainerInsets;
-
-/**
- *  The inset of the frame of the text view within a `JSQMessagesCollectionViewCell`. 
- *  
- *  @discussion The inset values should be greater than or equal to `0.0` and are applied in the following ways:
- *
- *  1. The right value insets the text view frame on the side adjacent to the avatar image 
- *  (or where the avatar would normally appear). For outgoing messages this is the right side, 
- *  for incoming messages this is the left side.
- *
- *  2. The left value insets the text view frame on the side opposite the avatar image 
- *  (or where the avatar would normally appear). For outgoing messages this is the left side, 
- *  for incoming messages this is the right side.
- *
- *  3. The top value insets the top of the frame.
- *
- *  4. The bottom value insets the bottom of the frame.
- */
-@property (assign, nonatomic) UIEdgeInsets textViewFrameInsets;
 
 /**
  *  The size of the `avatarImageView` of a `JSQMessagesCollectionViewCellIncoming`.

@@ -32,19 +32,18 @@
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
 @property (weak, nonatomic) IBOutlet UIView *messageBubbleContainerView;
-@property (weak, nonatomic) IBOutlet UIView *avatarContainerView;
+// @property (weak, nonatomic) IBOutlet UIView *avatarContainerView;
+@property (weak, nonatomic) IBOutlet UIImageView *avatarImageView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewTopVerticalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewBottomVerticalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewAvatarHorizontalSpaceConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewMarginHorizontalSpaceConstraint;
 
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarContainerViewWidthConstraint;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarContainerViewHeightConstraint;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarContainerViewWidthConstraint;
+//@property (weak, nonatomic) IBOutlet NSLayoutConstraint *avatarContainerViewHeightConstraint;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *messageBubbleLeftRightMarginConstraint;
-
-@property (assign, nonatomic) UIEdgeInsets textViewFrameInsets;
 
 @property (assign, nonatomic) CGSize avatarViewSize;
 
@@ -154,12 +153,10 @@
         if (!UIEdgeInsetsEqualToEdgeInsets(self.textView.textContainerInset, customAttributes.textViewTextContainerInsets)) {
             self.textView.textContainerInset = customAttributes.textViewTextContainerInsets;
         }
-
-        self.textViewFrameInsets = customAttributes.textViewFrameInsets;
     }
 
     [self jsq_updateConstraint:self.messageBubbleLeftRightMarginConstraint
-                  withConstant:customAttributes.messageBubbleLeftRightMargin];
+                  withConstant:customAttributes.messageBubbleToNonAvatarEdge];
     
     if ([self isKindOfClass:[JSQMessagesCollectionViewCellIncoming class]]) {
         self.avatarViewSize = customAttributes.incomingAvatarViewSize;
@@ -213,67 +210,7 @@
     _messageBubbleImageView = messageBubbleImageView;
 }
 
-- (void)setAvatarImageView:(UIImageView *)avatarImageView
-{
-    if (_avatarImageView) {
-        [_avatarImageView removeFromSuperview];
-    }
-    
-    if (!avatarImageView) {
-        self.avatarViewSize = CGSizeZero;
-        _avatarImageView = nil;
-        self.avatarContainerView.hidden = YES;
-        return;
-    }
-    
-    self.avatarContainerView.hidden = NO;
-    self.avatarViewSize = CGSizeMake(CGRectGetWidth(avatarImageView.bounds), CGRectGetHeight(avatarImageView.bounds));
-    
-    [avatarImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    [self.avatarContainerView addSubview:avatarImageView];
-    [self.avatarContainerView jsq_pinAllEdgesOfSubview:avatarImageView];
-    [self setNeedsUpdateConstraints];
-    
-    _avatarImageView = avatarImageView;
-}
-
-- (void)setAvatarViewSize:(CGSize)avatarViewSize
-{
-    if (CGSizeEqualToSize(avatarViewSize, self.avatarViewSize)) {
-        return;
-    }
-    
-    [self jsq_updateConstraint:self.avatarContainerViewWidthConstraint withConstant:avatarViewSize.width];
-    [self jsq_updateConstraint:self.avatarContainerViewHeightConstraint withConstant:avatarViewSize.height];
-}
-
-- (void)setTextViewFrameInsets:(UIEdgeInsets)textViewFrameInsets
-{
-    if (UIEdgeInsetsEqualToEdgeInsets(textViewFrameInsets, self.textViewFrameInsets)) {
-        return;
-    }
-    
-    [self jsq_updateConstraint:self.textViewTopVerticalSpaceConstraint withConstant:textViewFrameInsets.top];
-    [self jsq_updateConstraint:self.textViewBottomVerticalSpaceConstraint withConstant:textViewFrameInsets.bottom];
-    [self jsq_updateConstraint:self.textViewAvatarHorizontalSpaceConstraint withConstant:textViewFrameInsets.right];
-    [self jsq_updateConstraint:self.textViewMarginHorizontalSpaceConstraint withConstant:textViewFrameInsets.left];
-}
-
 #pragma mark - Getters
-
-- (CGSize)avatarViewSize
-{
-    return CGSizeMake(self.avatarContainerViewWidthConstraint.constant,
-                      self.avatarContainerViewHeightConstraint.constant);
-}
-
-- (UIEdgeInsets)textViewFrameInsets
-{
-    return UIEdgeInsetsMake(self.textViewTopVerticalSpaceConstraint.constant,
-                            self.textViewMarginHorizontalSpaceConstraint.constant,
-                            self.textViewBottomVerticalSpaceConstraint.constant,
-                            self.textViewAvatarHorizontalSpaceConstraint.constant);
-}
 
 #pragma mark - Utilities
 
@@ -293,7 +230,7 @@
 {
     CGPoint touchPt = [tap locationInView:self];
     
-    if (CGRectContainsPoint(self.avatarContainerView.frame, touchPt)) {
+    if (CGRectContainsPoint(self.avatarImageView.frame, touchPt)) {
         [self.delegate messagesCollectionViewCellDidTapAvatar:self];
     }
     else if (CGRectContainsPoint(self.messageBubbleContainerView.frame, touchPt)) {

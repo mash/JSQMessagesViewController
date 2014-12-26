@@ -111,7 +111,7 @@
  *  its frame, nor should you remove this view from the cell or remove any of its subviews.
  *  Doing so could result in unexpected behavior.
  */
-@property (weak, nonatomic, readonly) UIView *avatarContainerView;
+// @property (weak, nonatomic, readonly) UIView *avatarContainerView;
 
 /**
  *  The bubble image view of the cell that is responsible for displaying bubble images.
@@ -123,7 +123,7 @@
  *  The avatar image view of the cell that is responsible for displaying avatar images.
  *  The default value is `nil`.
  */
-@property (weak, nonatomic) UIImageView *avatarImageView;
+@property (weak, nonatomic, readonly) UIImageView *avatarImageView;
 
 /**
  *  Returns the underlying gesture recognizer for tap gestures in the avatarImageView of the cell.
