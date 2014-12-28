@@ -118,7 +118,6 @@
     
     _cellBottomLabel = nil;
     _textView = nil;
-    _messageBubbleImageView = nil;
     _avatarImageView = nil;
     
     [_tapGestureRecognizer removeTarget:nil action:NULL];
@@ -169,46 +168,14 @@
 - (void)setHighlighted:(BOOL)highlighted
 {
     [super setHighlighted:highlighted];
-    self.messageBubbleImageView.highlighted = highlighted;
 }
 
 - (void)setSelected:(BOOL)selected
 {
     [super setSelected:selected];
-    self.messageBubbleImageView.highlighted = selected;
 }
 
 #pragma mark - Setters
-
-- (void)setMessageBubbleImageView:(UIImageView *)messageBubbleImageView
-{
-    if (_messageBubbleImageView) {
-        [_messageBubbleImageView removeFromSuperview];
-    }
-    
-    if (!messageBubbleImageView) {
-        _messageBubbleImageView = nil;
-        return;
-    }
-    
-    messageBubbleImageView.frame = CGRectMake(0.0f,
-                                              0.0f,
-                                              CGRectGetWidth(self.messageBubbleContainerView.bounds),
-                                              CGRectGetHeight(self.messageBubbleContainerView.bounds));
-    
-    [messageBubbleImageView setTranslatesAutoresizingMaskIntoConstraints:NO];
-    if (self.textView) {
-        [self.messageBubbleContainerView insertSubview:messageBubbleImageView belowSubview:self.textView];
-        [self.messageBubbleContainerView jsq_pinAllEdgesOfSubview:messageBubbleImageView];
-    }
-    else {
-        [self.messageBubbleContainerView insertSubview:messageBubbleImageView atIndex:self.subviews.count-1];
-        [self.messageBubbleContainerView jsq_pinAllEdgesOfSubview:messageBubbleImageView];
-    }
-    [self setNeedsUpdateConstraints];
-    
-    _messageBubbleImageView = messageBubbleImageView;
-}
 
 #pragma mark - Getters
 
