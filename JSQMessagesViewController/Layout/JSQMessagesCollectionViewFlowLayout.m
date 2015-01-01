@@ -380,9 +380,17 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
                                                          options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                                       attributes:@{ NSFontAttributeName : self.messageBubbleFont }
                                                          context:nil];
-    
     CGSize stringSize = CGRectIntegral(stringRect).size;
-    
+
+    // doesn't work too
+//    UILabel *gettingSizeLabel = [[UILabel alloc] init];
+//    gettingSizeLabel.font = self.messageBubbleFont;
+//    gettingSizeLabel.text = [messageData text];
+//    gettingSizeLabel.numberOfLines = 0;
+//    gettingSizeLabel.lineBreakMode = NSLineBreakByWordWrapping;
+//    CGSize maximumLabelSize = CGSizeMake(maximumTextWidth - textInsetsTotal, 9999);
+//    CGSize stringSize = [gettingSizeLabel sizeThatFits:maximumLabelSize];
+
     CGFloat verticalInsets = self.messageBubbleTextViewTextContainerInsets.top + self.messageBubbleTextViewTextContainerInsets.bottom;
     
     CGSize avatarSize = [self jsq_avatarSizeForIndexPath:indexPath];
@@ -399,9 +407,13 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
     
     CGSize messageBubbleSize = [self messageBubbleSizeForItemAtIndexPath:indexPath];
     CGFloat textViewInsets = self.messageBubbleTextViewTextContainerInsets.left + self.messageBubbleTextViewTextContainerInsets.right;
-    CGFloat a = self.itemWidth - messageBubbleSize.width - self.textViewToAvatarEdge - textViewInsets;
+
+    // iPhone6
+    // text: "Hey"
+    //          375                                  - 26                      - 60                        - 16 = 273
+    CGFloat a = self.collectionView.frame.size.width - messageBubbleSize.width - self.textViewToAvatarEdge - textViewInsets;
     
-    layoutAttributes.messageBubbleToNonAvatarEdge = a; // TODO
+    layoutAttributes.messageBubbleToNonAvatarEdge = a;
 
     layoutAttributes.textViewTextContainerInsets = self.messageBubbleTextViewTextContainerInsets;
     
