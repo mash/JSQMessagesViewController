@@ -71,7 +71,6 @@ const CGFloat kJSQMessagesCollectionViewCellLabelHeightDefault = 20.0f;
 - (void)jsq_configureFlowLayout
 {
     self.scrollDirection = UICollectionViewScrollDirectionVertical;
-    self.minimumLineSpacing = 4.0f;
     
     _messageBubbleSizes = [NSMutableDictionary new];
     
