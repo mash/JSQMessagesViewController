@@ -77,12 +77,6 @@
 @property (weak, nonatomic) id<JSQMessagesCollectionViewCellDelegate> delegate;
 
 /**
- *  Returns the label that is pinned to the bottom of the cell.
- *  This label is most commonly used to display message delivery status.
- */
-@property (weak, nonatomic, readonly) JSQMessagesLabel *cellBottomLabel;
-
-/**
  *  Returns the text view of the cell. This text view contains the message body text.
  */
 @property (weak, nonatomic, readonly) UITextView *textView;

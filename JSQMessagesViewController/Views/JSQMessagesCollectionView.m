@@ -19,8 +19,6 @@
 #import "JSQMessagesCollectionView.h"
 
 #import "JSQMessagesCollectionViewFlowLayout.h"
-#import "JSQMessagesCollectionViewCellIncoming.h"
-#import "JSQMessagesCollectionViewCellOutgoing.h"
 
 #import "JSQMessagesTypingIndicatorFooterView.h"
 #import "JSQMessagesLoadEarlierHeaderView.h"
@@ -44,12 +42,6 @@
     self.keyboardDismissMode = UIScrollViewKeyboardDismissModeInteractive;
     self.alwaysBounceVertical = YES;
     self.bounces = YES;
-    
-    [self registerNib:[JSQMessagesCollectionViewCellIncoming nib]
-          forCellWithReuseIdentifier:[JSQMessagesCollectionViewCellIncoming cellReuseIdentifier]];
-    
-    [self registerNib:[JSQMessagesCollectionViewCellOutgoing nib]
-          forCellWithReuseIdentifier:[JSQMessagesCollectionViewCellOutgoing cellReuseIdentifier]];
     
     [self registerNib:[JSQMessagesTypingIndicatorFooterView nib]
           forSupplementaryViewOfKind:UICollectionElementKindSectionFooter

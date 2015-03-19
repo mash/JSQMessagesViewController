@@ -18,16 +18,12 @@
 
 #import "JSQMessagesCollectionViewCell.h"
 
-#import "JSQMessagesCollectionViewCellIncoming.h"
-#import "JSQMessagesCollectionViewCellOutgoing.h"
 #import "JSQMessagesCollectionViewLayoutAttributes.h"
 
 #import "UIView+JSQMessages.h"
 
 
 @interface JSQMessagesCollectionViewCell ()
-
-@property (weak, nonatomic) IBOutlet JSQMessagesLabel *cellBottomLabel;
 
 @property (weak, nonatomic) IBOutlet UITextView *textView;
 
@@ -116,7 +112,6 @@
 {
     _delegate = nil;
     
-    _cellBottomLabel = nil;
     _textView = nil;
     _avatarImageView = nil;
     
@@ -130,7 +125,6 @@
 {
     [super prepareForReuse];
     
-    self.cellBottomLabel.text = nil;
     if (self.textView) {
         self.textView.dataDetectorTypes = UIDataDetectorTypeNone;
         self.textView.text = nil;
@@ -157,12 +151,7 @@
     [self jsq_updateConstraint:self.messageBubbleLeftRightMarginConstraint
                   withConstant:customAttributes.messageBubbleToNonAvatarEdge];
     
-    if ([self isKindOfClass:[JSQMessagesCollectionViewCellIncoming class]]) {
-        self.avatarViewSize = customAttributes.incomingAvatarViewSize;
-    }
-    else if ([self isKindOfClass:[JSQMessagesCollectionViewCellOutgoing class]]) {
-        self.avatarViewSize = customAttributes.outgoingAvatarViewSize;
-    }
+    self.avatarViewSize = customAttributes.incomingAvatarViewSize;
 }
 
 - (void)setHighlighted:(BOOL)highlighted
